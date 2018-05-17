@@ -74,7 +74,7 @@ compile = input => {
     }
 
 	result += `
-    console.log(output);
+    return output;
 }
 	`;
 
