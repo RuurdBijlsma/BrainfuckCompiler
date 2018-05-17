@@ -16,7 +16,7 @@ This will interpret the brainfuck code and log its output, in this case it's `He
 This will produce the following Javascript code:
 
 ```js
-input => {
+() => {
     let cells = { 0: 0 };
     let index = 0;
     let output = '';
