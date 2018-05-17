@@ -1,5 +1,5 @@
 compile = input => {
-	let result = `
+    let result = `
 () => {
     let cells = {0:0};
     let index = 0;
@@ -16,71 +16,70 @@ compile = input => {
 	}
 `;
 
-	let allowedTokens = '<>+-.,[]';
+    let allowedTokens = '<>+-.,[]';
 
-	let actions = {
+    let actions = {
         '.': () => `output += String.fromCharCode(cells[index])`,
         ',': () => `cells[index] = prompt().charCodeAt()`,
         '[': () => `while(cells[index]){`,
         ']': () => '}',
-		'0': () => 'assign(0)',
+        '0': () => 'assign(0)',
     }
 
-	input = input.split('').filter(char => allowedTokens.includes(char)).join('');
-	input = input.replace(/\[\-\]/g, '0');
+    input = input.split('').filter(char => allowedTokens.includes(char)).join('');
+    input = input.replace(/\[\-\]/g, '0');
 
-	let indentation = 1;
-	for(let i = 0; i < input.length; i++){
-		if(input[i] === ']')
-			indentation--;
-		let line = '\t'.repeat(indentation);
-		if(input[i] === '[')
-			indentation++;
+    let indentation = 1;
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] === ']')
+            indentation--;
+        let line = '\t'.repeat(indentation);
+        if (input[i] === '[')
+            indentation++;
 
-		if(input[i] === '+' || input[i] === '-'){
+        if (input[i] === '+' || input[i] === '-') {
 
             let addition = 0;
-            while(input[i] === '+' || input[i] === '-'){
-                if(input[i] === '+')
+            while (input[i] === '+' || input[i] === '-') {
+                if (input[i] === '+')
                     addition++;
-                if(input[i] === '-')
+                if (input[i] === '-')
                     addition--;
                 i++;
             }
 
-			line += `add(${addition})`;
+            line += `add(${addition})`;
 
-			i--;
+            i--;
 
-        }
-		else if(input[i] === '<' || input[i] === '>'){
+        } else if (input[i] === '<' || input[i] === '>') {
 
             let shift = 0;
-            while(input[i] === '<' || input[i] === '>'){
-                if(input[i] === '>')
+            while (input[i] === '<' || input[i] === '>') {
+                if (input[i] === '>')
                     shift++;
-                if(input[i] === '<')
+                if (input[i] === '<')
                     shift--;
                 i++;
             }
 
-			line += `shift(${shift})`;
+            line += `shift(${shift})`;
 
-			i--;
+            i--;
 
         } else {
-			line += actions[input[i]]();
+            line += actions[input[i]]();
         }
 
-		result += line + '\n';
+        result += line + '\n';
     }
 
-	result += `
+    result += `
     return output;
 }
 	`;
 
-	return eval(result);
+    return eval(result);
 }
 
 p = compile(`++++++++++[>++++++++++<-]>>++++++++++>->>>>>>>>>>>>>>>>-->+++++++[->++
