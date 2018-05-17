@@ -1,5 +1,5 @@
 # BrainfuckCompiler
-A script to compile Brainfuck to Javascript and a script to interpret Brainfuck
+A script to compile Brainfuck to Javascript and a script to interpret Brainfuck. Try the compiler here: https://ruurdbijlsma.com/brainfuck/ 
 
 ## Usage
 
