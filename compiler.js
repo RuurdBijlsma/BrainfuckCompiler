@@ -20,7 +20,7 @@ compile = input => {
 
 	let actions = {
         '.': () => `output += String.fromCharCode(cells[index])`,
-        ',': () => `cells[index] = prompt()`,
+        ',': () => `cells[index] = prompt().charCodeAt()`,
         '[': () => `while(cells[index]){`,
         ']': () => '}'
     }
