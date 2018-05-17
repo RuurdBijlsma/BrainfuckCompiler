@@ -8,7 +8,7 @@ brainfuck = input => {
         '+': () => cells[index]++,
         '-': () => cells[index]--,
         '.': () => output += String.fromCharCode(cells[index]),
-        ',': () => cells[index] = prompt(),
+        ',': () => cells[index] = prompt().charCodeAt(),
         '[': (input, i) => {
             if (!cells[index]) {
                 let ignores = 0;
