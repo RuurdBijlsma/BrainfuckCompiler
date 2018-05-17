@@ -1,6 +1,6 @@
 compile = input => {
 	let result = `
-input => {
+() => {
     let cells = {0:0};
     let index = 0;
     let output = '';
